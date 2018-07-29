@@ -12,6 +12,7 @@ import database.DBManager;
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
-		DBManager.insertBooks(Arrays.asList(new Book.BookBuilder().Title("test").Fictional(Fictional.FICTION).ISBN(44).ReleaseDate(new Date(new java.util.Date().getTime())).Author("me").eBook(false).Edition("1st").Genre(Genre.MYSTERY).Price(44.44).Quantity(444).buildBook()));
+//		DBManager.insertBooks(Arrays.asList(new Book.BookBuilder().Title("test").Fictional(Fictional.FICTION).ISBN(44).ReleaseDate(new Date(new java.util.Date().getTime())).Author("me").eBook(false).Edition("1st").Genre(Genre.MYSTERY).Price(44.44).Quantity(444).buildBook()));
+		DBManager.selectBasketItems();
 	}
 }
