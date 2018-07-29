@@ -41,13 +41,11 @@ public class DBManager {
 	}
 
 	public static void deleteBasketItem(BasketItem item) throws SQLException {
-		String sql = "DELETE FROM `basket_item`" + "WHERE basket_item.ISBN = " + item.getISBN()
-				+ "And basket_item.Username = " + item.getUserName() + ";";
+		String sql = "DELETE FROM `basket_item`" + " WHERE basket_item.ISBN = " + item.getISBN()
+				+ " And basket_item.Username = \"" + item.getUserName() + "\";";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				PreparedStatement stmt = conn.prepareStatement(sql);) {
-			conn.setAutoCommit(false);
 			stmt.execute();
-			conn.commit();
 		}
 	}
 
@@ -345,15 +343,13 @@ public class DBManager {
 
 	public static void updateAddress(Address address) throws SQLException {
 		String sql = "UPDATE `address`" + "SET" + "`House_Name/Number` = ?," + "`Postcode` = ?"
-				+ "WHERE `House_Name/Number` = " + address.getHouseName() + " AND `Postcode` = "
-				+ address.getPostcode().getPostCode() + ";";
+				+ "WHERE `House_Name/Number` = \"" + address.getHouseName() + "\" AND `Postcode` = \""
+				+ address.getPostcode().getPostCode() + "\";";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				PreparedStatement stmt = conn.prepareStatement(sql)) {
-			conn.setAutoCommit(false);
 			stmt.setString(1, address.getHouseName());
 			stmt.setString(2, address.getPostcode().getPostCode());
 			stmt.execute();
-			conn.commit();
 		}
 	}
 

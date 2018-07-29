@@ -10,8 +10,7 @@ public class BasketItem {
 		this.ISBN = ISBN;
 	}
 
-	public BasketItem() {
-	}
+	public BasketItem() {}
 
 	public String getUserName() {
 		return userName;
@@ -28,6 +27,4 @@ public class BasketItem {
 	public void setISBN(int iSBN) {
 		ISBN = iSBN;
 	}
-
-
 }
