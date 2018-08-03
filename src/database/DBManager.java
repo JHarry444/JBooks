@@ -6,10 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.*;
-import java.util.Map.Entry;
-
-import com.mysql.cj.protocol.Resultset;
+import java.util.ArrayList;
+import java.util.List;
 
 import basket.BasketItem;
 import books.Book;
@@ -28,6 +26,8 @@ public class DBManager {
 	static final String DB_URL = "jdbc:mysql://localhost/firstDraft?serverTimezone=UTC";
 	static final String USER = "root";
 	static final String PASS = "password";
+	
+	private DBManager() {}
 
 	public static void deleteAddress(Address address) throws SQLException {
 		String sql = "DELETE FROM `address`" + "WHERE address.House_Name/Number = " + address.getHouseName()
@@ -246,8 +246,8 @@ public class DBManager {
 		List<Address> addresses = new ArrayList<>();
 		String sql = "SELECT * FROM user;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				addresses.add(new Address(rs.getString("House_Name/Number"), null));
 			}
@@ -259,8 +259,7 @@ public class DBManager {
 		List<BasketItem> items = new ArrayList<>();
 		String sql = "SELECT * FROM basket_item;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				items.add(new BasketItem(rs.getString("Username"), rs.getInt("ISBN")));
 			}
@@ -272,8 +271,7 @@ public class DBManager {
 		List<Book> books = new ArrayList<>();
 		String sql = "SELECT * FROM book;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				books.add(new Book(rs.getInt("ISBN"), rs.getString("Title"), rs.getString("Author"),
 						rs.getString("Synopsis"), rs.getDate("Release Date"), rs.getBoolean("Ebook"),
@@ -288,8 +286,7 @@ public class DBManager {
 		List<Order> orders = new ArrayList<>();
 		String sql = "SELECT * FROM order;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				orders.add(new Order(rs.getInt("Order_ID"), rs.getString("Username"), rs.getDouble("Price"),
 						rs.getTimestamp("Time"), OrderStatus.valueOf(rs.getString("Order_Status")), null));
@@ -302,8 +299,7 @@ public class DBManager {
 		List<PostCode> postcodes = new ArrayList<>();
 		String sql = "SELECT * FROM postcode;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				postcodes.add(new PostCode(rs.getString("Postcode"), rs.getString("Street"), rs.getString("City"),
 						rs.getString("Country")));
@@ -316,8 +312,7 @@ public class DBManager {
 		List<Review> reviews = new ArrayList<>();
 		String sql = "SELECT * FROM postcode;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				reviews.add(new Review(rs.getInt("Review_ID"), rs.getInt("ISBN"), rs.getString("Username"),
 						rs.getString("Review"), rs.getInt("Rating"), rs.getTimestamp("Time")));
@@ -330,8 +325,7 @@ public class DBManager {
 		List<User> users = new ArrayList<>();
 		String sql = "SELECT * FROM user;";
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
+				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				users.add(new User(rs.getString("Username"), rs.getString("Password"), null,
 						rs.getString("Email_Address"), rs.getString("Contact_Number"), rs.getString("First_Name"),
@@ -392,7 +386,7 @@ public class DBManager {
 		}
 	}
 
-	public static void updatetUsers(User user) throws SQLException {
+	public static void updateUsers(User user) throws SQLException {
 		String sql = "UPDATE `user`" + "SET" + "`Username` = ?," + "`Password` = ?," + "`House Name/Number` = ?,"
 				+ "`Postcode` = ?," + "`Email_Address` = ?," + "`Contact_Number` = ?," + "`First_Name` = ?,"
 				+ "`Last_Name` = ?," + "`Date_Of_Birth` = ?" + "WHERE `Username` = " + user.getUsername() + ";";
