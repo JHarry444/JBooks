@@ -20,48 +20,18 @@ public class Book {
 		private Fictional fictional;
 		private List<Review> reviews;
 
-		public BookBuilder ISBN(int iSBN) {
-			ISBN = iSBN;
-			return this;
-		}
-
-		public BookBuilder Title(String title) {
-			this.title = title;
-			return this;
-		}
-
 		public BookBuilder Author(String author) {
 			this.author = author;
 			return this;
 		}
 
-		public BookBuilder Synopsis(String synopsis) {
-			this.synopsis = synopsis;
-			return this;
-		}
-
-		public BookBuilder ReleaseDate(Date releaseDate) {
-			this.releaseDate = releaseDate;
-			return this;
+		public Book buildBook() {
+			return new Book(this.ISBN, this.title, this.author, this.synopsis, this.releaseDate, this.eBook,
+					this.quantity, this.price, this.genre, this.edition, this.fictional, this.reviews);
 		}
 
 		public BookBuilder eBook(boolean eBook) {
 			this.eBook = eBook;
-			return this;
-		}
-
-		public BookBuilder Quantity(int quantity) {
-			this.quantity = quantity;
-			return this;
-		}
-
-		public BookBuilder Price(double price) {
-			this.price = price;
-			return this;
-		}
-
-		public BookBuilder Genre(Genre genre) {
-			this.genre = genre;
 			return this;
 		}
 
@@ -75,9 +45,44 @@ public class Book {
 			return this;
 		}
 
-		public Book buildBook() {
-			return new Book(this.ISBN, this.title, this.author, this.synopsis, this.releaseDate, this.eBook,
-					this.quantity, this.price, this.genre, this.edition, this.fictional, this.reviews);
+		public BookBuilder Genre(Genre genre) {
+			this.genre = genre;
+			return this;
+		}
+
+		public BookBuilder ISBN(int iSBN) {
+			ISBN = iSBN;
+			return this;
+		}
+
+		public BookBuilder Price(double price) {
+			this.price = price;
+			return this;
+		}
+
+		public BookBuilder Quantity(int quantity) {
+			this.quantity = quantity;
+			return this;
+		}
+
+		public BookBuilder ReleaseDate(Date releaseDate) {
+			this.releaseDate = releaseDate;
+			return this;
+		}
+
+		public BookBuilder Reviews(List<Review> reviews) {
+			this.reviews = reviews;
+			return this;
+		}
+
+		public BookBuilder Synopsis(String synopsis) {
+			this.synopsis = synopsis;
+			return this;
+		}
+
+		public BookBuilder Title(String title) {
+			this.title = title;
+			return this;
 		}
 	}
 
@@ -112,99 +117,99 @@ public class Book {
 		this.reviews = reviews;
 	}
 
-	public int getISBN() {
-		return ISBN;
-	}
-
-	public void setISBN(int iSBN) {
-		ISBN = iSBN;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getAuthor() {
 		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getSynopsis() {
-		return synopsis;
-	}
-
-	public void setSynopsis(String synopsis) {
-		this.synopsis = synopsis;
-	}
-
-	public Date getReleaseDate() {
-		return releaseDate;
-	}
-
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	public boolean isEBook() {
-		return eBook;
-	}
-
-	public void seteBook(boolean eBook) {
-		this.eBook = eBook;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public Genre getGenre() {
-		return genre;
-	}
-
-	public void setGenre(Genre genre) {
-		this.genre = genre;
 	}
 
 	public String getEdition() {
 		return edition;
 	}
 
-	public void setEdition(String edition) {
-		this.edition = edition;
-	}
-
 	public Fictional getFictional() {
 		return fictional;
 	}
 
-	public void setFictional(Fictional fictional) {
-		this.fictional = fictional;
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public int getISBN() {
+		return ISBN;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
 	public List<Review> getReviews() {
 		return reviews;
 	}
 
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public boolean isEBook() {
+		return eBook;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public void seteBook(boolean eBook) {
+		this.eBook = eBook;
+	}
+
+	public void setEdition(String edition) {
+		this.edition = edition;
+	}
+
+	public void setFictional(Fictional fictional) {
+		this.fictional = fictional;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
+
+	public void setISBN(int iSBN) {
+		ISBN = iSBN;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }
