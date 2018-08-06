@@ -9,6 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import basket.BasketItem;
 import books.Book;
 import books.Fictional;
@@ -19,7 +24,7 @@ import orders.OrderStatus;
 import users.Address;
 import users.PostCode;
 import users.User;
-
+@Path("/db")
 public class DBManager {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -28,6 +33,13 @@ public class DBManager {
 	static final String PASS = "password";
 	
 	private DBManager() {}
+	
+	@Path("getJSON")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getJSON() {
+		return "test";
+	}
 
 	public static void deleteAddress(Address address) throws SQLException {
 		String sql = "DELETE FROM `address`" + "WHERE address.House_Name/Number = " + address.getHouseName()
@@ -314,8 +326,8 @@ public class DBManager {
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
-				reviews.add(new Review(rs.getInt("Review_ID"), rs.getInt("ISBN"), rs.getString("Username"),
-						rs.getString("Review"), rs.getInt("Rating"), rs.getTimestamp("Time")));
+				reviews.add(new Review(rs.getInt("Review_ID"), rs.getInt("ISBN"), rs.getInt("Rating"),
+						rs.getString("Review"), rs.getTimestamp("Time"), rs.getString("Username")));
 			}
 		}
 		return reviews;

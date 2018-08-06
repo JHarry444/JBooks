@@ -72,7 +72,7 @@ public class BookTest {
 	@Test
 	public void testGetReviews() {
 		List<Review> reviews = new ArrayList<>();
-		reviews.add(new Review(4, 44, "fr", "gfhf", 4, new Timestamp(4)));
+		reviews.add(new Review(4, 44, 4, "gfhf", new Timestamp(4), "fr"));
 		Book book = new Book.BookBuilder().Reviews(reviews).buildBook();
 		assertEquals("Incorrect reviews.", reviews, book.getReviews());
 	}
@@ -157,7 +157,7 @@ public class BookTest {
 	
 	public void testSetReviews() {
 		List<Review> reviews = new ArrayList<>();
-		reviews.add(new Review(4, 44, "fr", "gfhf", 4, new Timestamp(4)));
+		reviews.add(new Review(4, 44, 4, "gfhf", new Timestamp(4), "fr"));
 		Book book = new Book();
 		book.setReviews(reviews);
 		assertEquals("Incorrect reviews.", reviews, book.getReviews());
