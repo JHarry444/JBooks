@@ -1,19 +1,6 @@
 package main;
 
 import java.sql.SQLException;
-import java.util.Arrays;
-
-import basket.BasketItem;
-
-import java.sql.Date;
-
-import books.Book;
-import books.Fictional;
-import books.Genre;
-import database.DBManager;
-import orders.TrafficLight;
-import users.Address;
-import users.PostCode;
 
 public class Main {
 
