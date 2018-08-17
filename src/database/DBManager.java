@@ -14,6 +14,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.mysql.cj.xdevapi.JsonString;
+
 import basket.BasketItem;
 import books.Book;
 import books.Fictional;
@@ -34,11 +36,11 @@ public class DBManager {
 	
 	private DBManager() {}
 	
-	@Path("getJSON")
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getJSON")
 	public String getJSON() {
-		return "test";
+		return "{\"result\": \"test\"}";
 	}
 
 	public static void deleteAddress(Address address) throws SQLException {
